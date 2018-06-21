@@ -52,3 +52,5 @@ networks:
 
   elk:
     driver: bridge
+    
+restart: always
