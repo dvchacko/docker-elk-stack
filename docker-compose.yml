@@ -1,10 +1,10 @@
 version: '2'
-restart: always
 
 services:
 
   rabbitmq:
     image: rabbitmq:management
+    restart: always
     ports:
       - "5672:5672" #JMS Port
       - "15672:15672" #Management Port - default user:pass = guest:guest
@@ -19,6 +19,7 @@ services:
       - "9300:9300"
     environment:
       ES_JAVA_OPTS: "-Xmx256m -Xms256m"
+    restart: always
     networks:
       - elk
 
@@ -32,6 +33,7 @@ services:
       - "5001:5001"
     environment:
       LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+    restart: always
     networks:
       - elk
     depends_on:
@@ -44,6 +46,7 @@ services:
       - ./kibana/config/:/usr/share/kibana/config:ro
     ports:
       - "5601:5601"
+    restart: always
     networks:
       - elk
     depends_on:
